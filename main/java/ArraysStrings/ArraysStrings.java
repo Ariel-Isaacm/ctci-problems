@@ -1,7 +1,7 @@
 package ArraysStrings;
 
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class ArraysStrings {
 
@@ -35,13 +35,10 @@ public class ArraysStrings {
             set.add(input.charAt(i));
         }
         return true;
-
-        //
     }
 
-
     //Check Permutation: Given two strings, write a method to decide if one is a permutation oof the other
-    public boolean checkPermutation(String a, String b){
+    public boolean checkPermutation(String a, String b) {
         // O(n) time complexity O(1) space complexity
         if (a.length() != b.length()) return false;
         int xor = 0;
@@ -49,7 +46,27 @@ public class ArraysStrings {
             xor ^= a.charAt(i) ^ b.charAt(i);
         }
         return xor == 0;
-
     }
 
+    //URLify:
+    //Write a method to replace all spaces in a string with '%20' You may assume that the string has sufficient space at the end
+    //to hold the additional characters, and that you are given the true length of the string.(Note:
+    //If implementing in Java, please use a character array so that you can perform this operation in place.)
+    public String URLify(char[] charArray) {
+        // O(n) space and time complexity
+        LinkedList<Character> root = new LinkedList<Character>();
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] == ' ') {
+                root.add('%');
+                root.add('2');
+                root.add('0');
+            } else if (Character.isLetter(charArray[i])) {
+                root.add(charArray[i]);
+            }
+        }
+        for (int i = 0; i < root.size(); i++) {
+            charArray[i] = root.get(i);
+        }
+        return String.valueOf(charArray);
+    }
 }

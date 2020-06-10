@@ -8,13 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class StringsTest {
 
     private static ArraysStrings solution;
+
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         solution = new ArraysStrings();
     }
 
     @Test
-    public void testIsUnique(){
+    public void testIsUnique() {
         assertTrue(solution.isUnique("abc"));
         assertFalse(solution.isUnique("acc"));
         assertTrue(solution.isUnique("aqc"));
@@ -30,6 +31,10 @@ class StringsTest {
         assertFalse(solution.checkPermutation("abc", "abcx"));
         assertFalse(solution.checkPermutation("abc", "iop"));
         assertFalse(solution.checkPermutation("abc", "abr"));
+    }
 
+    @Test
+    void testUrlify() {
+        assertEquals("Mr%20John%20Smith", solution.URLify(new char[]{'M', 'r', ' ', 'J', 'o', 'h', 'n', ' ', 'S', 'm', 'i', 't', 'h',0, 0, 0, 0}));
     }
 }
