@@ -1,5 +1,6 @@
 package ArraysStrings;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -68,5 +69,49 @@ public class ArraysStrings {
             charArray[i] = root.get(i);
         }
         return String.valueOf(charArray);
+    }
+
+
+//    Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome.
+//    A palindrome is a word or phrase that is the same forwards and backwards.
+//    A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
+
+    public boolean palindromePermutation(String s) {
+        // O(n) time, O(1) space since we will store a collection depending on the dictionary of letters available
+
+        // should  we ignore whitespaces?
+        s = s.replaceAll(" ", "");
+        boolean isEven = s.length() % 2 == 0;
+        HashMap<Character, Integer> letters = new HashMap<Character, Integer>();  // this could be replace with an array
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (letters.containsKey(current)) {
+                int times = letters.get(current) + 1;
+                letters.put(current, times);
+            } else {
+                letters.put(current, 1);
+            }
+        }
+
+        if (isEven) {
+            // all of the letters should be even
+            for (Integer times : letters.values()) {
+                if (times % 2 != 0) {
+                    return false;
+                }
+            }
+        } else {
+            boolean oddFound = false;
+            for (Integer times : letters.values()) {
+                if (times % 2 != 0) {
+                    if (!oddFound) {
+                        oddFound = true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
