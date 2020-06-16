@@ -10,12 +10,12 @@ class StringsTest {
     private static ArraysStrings solution;
 
     @BeforeAll
-    public static void setUp() {
+    static void setUp() {
         solution = new ArraysStrings();
     }
 
     @Test
-    public void testIsUnique() {
+    void testIsUnique() {
         assertTrue(solution.isUnique("abc"));
         assertFalse(solution.isUnique("acc"));
         assertTrue(solution.isUnique("aqc"));
@@ -36,5 +36,18 @@ class StringsTest {
     @Test
     void testUrlify() {
         assertEquals("Mr%20John%20Smith", solution.URLify(new char[]{'M', 'r', ' ', 'J', 'o', 'h', 'n', ' ', 'S', 'm', 'i', 't', 'h',0, 0, 0, 0}));
+    }
+
+    @Test
+    void testPalindromePermutation() {
+        assertTrue(solution.palindromePermutation("Tact Coa"));
+    }
+
+    @Test
+    void testOneWay() {
+        assertTrue(solution.oneWay("pale", "ple"));
+        assertTrue(solution.oneWay("pales","pale"));
+        assertTrue(solution.oneWay("pale", "bale"));
+        assertFalse(solution.oneWay("pale", "bae"));
     }
 }
