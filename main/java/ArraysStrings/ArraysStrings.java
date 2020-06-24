@@ -133,15 +133,14 @@ class ArraysStrings {
 
         int index1 = 0;
         int index2 = 0;
-        while (index1 < bigger.length() && index2 < smaller.length()){
-            if (bigger.charAt(index1) == smaller.charAt(index2)){
+        while (index1 < bigger.length() && index2 < smaller.length()) {
+            if (bigger.charAt(index1) == smaller.charAt(index2)) {
                 index2++;
             } else {
                 if (differenceFound) return false;
                 differenceFound = true;
-                if (bigger.length() == smaller.length())
-                {
-                    index2 ++;
+                if (bigger.length() == smaller.length()) {
+                    index2++;
                 }
             }
             index1++;
@@ -149,4 +148,25 @@ class ArraysStrings {
         return true;
     }
 
+    //1.6 String Compression: Implement a method to perform basic string compression using the counts
+    //of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the
+    //"compressed" string would not become smaller than the original string, your method should return
+    //the original string. You can assume the string has only uppercase and lowercase letters (a - z).
+    public String stringCompression(String input) {
+        if (input == null || input.length() < 1) return input;
+        StringBuilder ans = new StringBuilder();
+        char previous = input.charAt(0);
+        int times = 1;
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == previous){
+                times++;
+            } else {
+                ans.append(previous).append(times);
+                times = 1;
+                previous = input.charAt(i);
+            }
+        }
+        ans.append(previous).append(times);
+        return ans.length() > input.length() ? input : ans.toString();
+    }
 }

@@ -35,7 +35,7 @@ class StringsTest {
 
     @Test
     void testUrlify() {
-        assertEquals("Mr%20John%20Smith", solution.URLify(new char[]{'M', 'r', ' ', 'J', 'o', 'h', 'n', ' ', 'S', 'm', 'i', 't', 'h',0, 0, 0, 0}));
+        assertEquals("Mr%20John%20Smith", solution.URLify(new char[]{'M', 'r', ' ', 'J', 'o', 'h', 'n', ' ', 'S', 'm', 'i', 't', 'h', 0, 0, 0, 0}));
     }
 
     @Test
@@ -46,8 +46,13 @@ class StringsTest {
     @Test
     void testOneWay() {
         assertTrue(solution.oneWay("pale", "ple"));
-        assertTrue(solution.oneWay("pales","pale"));
+        assertTrue(solution.oneWay("pales", "pale"));
         assertTrue(solution.oneWay("pale", "bale"));
         assertFalse(solution.oneWay("pale", "bae"));
+    }
+
+    @Test
+    void testStringCompression() {
+        assertEquals("a2b1c5a3", solution.stringCompression("aabcccccaaa"));
     }
 }
