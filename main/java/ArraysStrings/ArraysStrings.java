@@ -158,7 +158,7 @@ class ArraysStrings {
         char previous = input.charAt(0);
         int times = 1;
         for (int i = 1; i < input.length(); i++) {
-            if (input.charAt(i) == previous){
+            if (input.charAt(i) == previous) {
                 times++;
             } else {
                 ans.append(previous).append(times);
@@ -169,4 +169,37 @@ class ArraysStrings {
         ans.append(previous).append(times);
         return ans.length() > input.length() ? input : ans.toString();
     }
+
+
+    // 1.7 Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
+    //bytes, write a method to rotate the image by 90 degrees. (an you do this in place?
+
+
+    public void rotateMatrix(int[][] matrix) {
+        int n = matrix.length;
+        for (int layer = 0; layer < n / 2; layer++) {
+            int first = layer;
+            int last = n-1-layer;
+            for (int i = first; i < last; i++) {
+                int offset = i - first;
+                int top  = matrix[first][i];
+                matrix[first][i] = matrix[last-offset] [first];
+                matrix[last-offset][first] = matrix [last][last-offset];
+                matrix[last][last - offset] = matrix[i][last];
+                matrix[i][last] = top;
+            }
+        }
+    }
+    //    // 1,2,3     7,4,1
+    //    // 4,5,6     8,5,2
+    //    // 7,8,9     9,6,3
+
+    // +2,0, +1,+1, 0,+2
+    // +1,+1, 0,0, -1,+1
+    // -2,0, -1,-1, 0,-2
+
+    // n=3
+    // n-n    ,n-(n+2)| n-2     ,n-2     | n-n    ,n-1
+    // n-2    ,n-2    | n-n     ,n-n    | n-(n+1),n-2
+    // n-(n+2),n-n    | n-(n+1) ,n-(n+1)| n-n    ,n-(n+2)
 }

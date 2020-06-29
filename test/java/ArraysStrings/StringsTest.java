@@ -55,4 +55,9 @@ class StringsTest {
     void testStringCompression() {
         assertEquals("a2b1c5a3", solution.stringCompression("aabcccccaaa"));
     }
+
+    @Test
+    void testRotate() {
+        solution.rotateMatrix(new int[][]{{1,2,3}, {4,5,6},{7,8,9}});
+    }
 }
