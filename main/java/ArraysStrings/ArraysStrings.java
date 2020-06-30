@@ -179,12 +179,12 @@ class ArraysStrings {
         int n = matrix.length;
         for (int layer = 0; layer < n / 2; layer++) {
             int first = layer;
-            int last = n-1-layer;
+            int last = n - 1 - layer;
             for (int i = first; i < last; i++) {
                 int offset = i - first;
-                int top  = matrix[first][i];
-                matrix[first][i] = matrix[last-offset] [first];
-                matrix[last-offset][first] = matrix [last][last-offset];
+                int top = matrix[first][i];
+                matrix[first][i] = matrix[last - offset][first];
+                matrix[last - offset][first] = matrix[last][last - offset];
                 matrix[last][last - offset] = matrix[i][last];
                 matrix[i][last] = top;
             }
@@ -202,4 +202,36 @@ class ArraysStrings {
     // n-n    ,n-(n+2)| n-2     ,n-2     | n-n    ,n-1
     // n-2    ,n-2    | n-n     ,n-n    | n-(n+1),n-2
     // n-(n+2),n-n    | n-(n+1) ,n-(n+1)| n-n    ,n-(n+2)
+
+
+    //1.8 Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+    //column are set to O.
+    public int[][] zeroMatrix(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return matrix;
+        boolean[][] isProcessed = new boolean[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 0 && !isProcessed[i][j]) {
+                    convertColumnsAndRows(matrix, isProcessed, i, j);
+                }
+            }
+        }
+        return matrix;
+    }
+
+    private void convertColumnsAndRows(int[][] matrix, boolean[][] processed, int i, int j) {
+        for (int k = 0; k < matrix[j].length; k++) {
+            if (!processed[i][k]) {
+                matrix[i][k] = 0;
+                processed[i][k] = true;
+            }
+
+        }
+        for (int k = 0; k < matrix.length; k++) {
+            if (!processed[k][j]) {
+                matrix[k][j] = 0;
+                processed[k][j] = true;
+            }
+        }
+    }
 }
