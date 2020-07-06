@@ -70,4 +70,9 @@ class StringsTest {
 
         });
     }
+
+    @Test
+    void testIsRotation() {
+        assertTrue(solution.isRotation("waterbottle", "erbottlewat"));
+    }
 }

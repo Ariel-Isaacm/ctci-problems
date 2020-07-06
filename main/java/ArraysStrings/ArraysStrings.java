@@ -234,4 +234,12 @@ class ArraysStrings {
             }
         }
     }
+
+
+    //1.9 String Rotation: Assume you have a method isSubst ring which checks if one word is a substring
+    //of another. Given two strings, S1 and S2, write code to check if 52 is a rotation of 51 using only one
+    //call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
+    public boolean isRotation(String s1, String s2){
+        return (s1+s1).contains(s2);
+    }
 }
