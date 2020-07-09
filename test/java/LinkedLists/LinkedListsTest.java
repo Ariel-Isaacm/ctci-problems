@@ -36,4 +36,22 @@ class LinkedListsTest {
         listNode.next.next.next.next.next = new ListNode(6);
         assertEquals(5, solution.kthElement(listNode, 5).val);
     }
+
+    @Test
+    void testDeleteMiddleNode() {
+//        a->b->c->d->e->f
+        ListNode listNode = new ListNode('a');
+        listNode.next = new ListNode('b');
+        ListNode cNode = listNode.next.next = new ListNode('c');
+        listNode.next.next.next = new ListNode('d');
+        listNode.next.next.next.next = new ListNode('e');
+        listNode.next.next.next.next.next = new ListNode('f');
+        solution.deleteMiddleNode(cNode);
+        int size = 0;
+        while (listNode != null) {
+            size++;
+            listNode = listNode.next;
+        }
+        assertEquals(5, size);
+    }
 }

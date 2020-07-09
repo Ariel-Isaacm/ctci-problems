@@ -57,4 +57,15 @@ public class LinkedLists {
 
         return slow;
     }
+
+    //2.3 Delete Middle Node: Implement an algorithm to delete a node in the middle (Le., any node but
+    //the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
+    //that node.
+    public boolean deleteMiddleNode(ListNode node){
+        if (node == null || node.next == null) return false;
+        ListNode nextN = node.next;
+        node.val = nextN.val;
+        node.next = nextN.next;
+        return true;
+    }
 }
