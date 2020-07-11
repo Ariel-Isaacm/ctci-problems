@@ -61,11 +61,54 @@ public class LinkedLists {
     //2.3 Delete Middle Node: Implement an algorithm to delete a node in the middle (Le., any node but
     //the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
     //that node.
-    public boolean deleteMiddleNode(ListNode node){
+    public boolean deleteMiddleNode(ListNode node) {
         if (node == null || node.next == null) return false;
         ListNode nextN = node.next;
         node.val = nextN.val;
         node.next = nextN.next;
         return true;
     }
+
+    //2.4 Partition: Write code to partition a linked list around a value x, such that all nodes less than x come
+    //before all nodes greater than or equal to x. If x is contained within the list, the values of x only need
+    //to be after the elements less than x (see below). The partition element x can appear anywhere in the
+    //"right partition"; it does not need to appear between the left and right partitions.
+    public ListNode createPartition(ListNode node, int partition) {
+        if (node == null) return null;
+        ListNode beforeStart = null;
+        ListNode beforeEnd = null;
+        ListNode afterStart = null;
+        ListNode afterEnd = null;
+
+        while (node != null) {
+            ListNode next = node.next;
+            node.next = null;
+            if (node.val < partition) {
+                if (beforeStart == null) {
+                    beforeStart = node;
+                    beforeEnd = beforeStart;
+                } else {
+                    beforeEnd.next = node;
+                    beforeEnd = node;
+                }
+            } else {
+                if (afterStart == null) {
+                    afterStart = node;
+                    afterEnd = afterStart;
+                } else {
+                    afterEnd.next = node;
+                    afterEnd = node;
+                }
+            }
+            node = next;
+        }
+
+        if (beforeStart == null) {
+            return afterStart;
+        }
+
+        beforeEnd.next = afterStart;
+        return beforeStart;
+    }
+
 }

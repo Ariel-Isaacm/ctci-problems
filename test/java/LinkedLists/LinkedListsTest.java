@@ -17,41 +17,43 @@ class LinkedListsTest {
 
     @Test
     void testRemoveDups() {
-        ListNode listNode = new ListNode(3);
-        listNode.next = new ListNode(5);
-        listNode.next.next = new ListNode(6);
-        listNode.next.next.next = new ListNode(3);
-        listNode.next.next.next.next = new ListNode(6);
-        listNode.next.next.next.next.next = new ListNode(6);
+        ListNode listNode = createListNodes(3, 5, 6, 3, 6, 6);
         solution.removeDups(listNode);
     }
 
     @Test
     void testKthElement() {
-        ListNode listNode = new ListNode(3);
-        listNode.next = new ListNode(5);
-        listNode.next.next = new ListNode(6);
-        listNode.next.next.next = new ListNode(3);
-        listNode.next.next.next.next = new ListNode(6);
-        listNode.next.next.next.next.next = new ListNode(6);
+        ListNode listNode = createListNodes(3, 5, 6, 3, 6, 6);
         assertEquals(5, solution.kthElement(listNode, 5).val);
     }
 
     @Test
     void testDeleteMiddleNode() {
 //        a->b->c->d->e->f
-        ListNode listNode = new ListNode('a');
-        listNode.next = new ListNode('b');
-        ListNode cNode = listNode.next.next = new ListNode('c');
-        listNode.next.next.next = new ListNode('d');
-        listNode.next.next.next.next = new ListNode('e');
-        listNode.next.next.next.next.next = new ListNode('f');
-        solution.deleteMiddleNode(cNode);
+        ListNode listNode = createListNodes('a', 'b', 'c', 'd', 'e', 'f');
+        solution.deleteMiddleNode(listNode.next.next);
         int size = 0;
         while (listNode != null) {
             size++;
             listNode = listNode.next;
         }
         assertEquals(5, size);
+    }
+
+    @Test
+    void testCreatePartition() {
+        solution.createPartition(createListNodes(3, 5, 8, 5, 10, 2, 1), 5);
+    }
+
+
+    ListNode createListNodes(int... vals) {
+        ListNode head = new ListNode(vals[0]);
+        ListNode curr = head;
+
+        for (int i = 1; i < vals.length; i++) {
+            curr.next = new ListNode(vals[i]);
+            curr = curr.next;
+        }
+        return head;
     }
 }
