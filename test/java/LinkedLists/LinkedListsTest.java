@@ -45,6 +45,13 @@ class LinkedListsTest {
         solution.createPartition(createListNodes(3, 5, 8, 5, 10, 2, 1), 5);
     }
 
+    @Test
+    void testSumLists() {
+        ListNode listNode = solution.sumLists(createListNodes(7, 1, 6), createListNodes(5, 9, 2));
+        assertEquals(2, listNode.val);
+        assertEquals(1, listNode.next.val);
+        assertEquals(9, listNode.next.next.val);
+    }
 
     ListNode createListNodes(int... vals) {
         ListNode head = new ListNode(vals[0]);

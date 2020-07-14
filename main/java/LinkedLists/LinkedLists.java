@@ -111,4 +111,45 @@ public class LinkedLists {
         return beforeStart;
     }
 
+    //2.5 Sum Lists: You have two numbers represented by a linked list, where each node contains a single
+    //digit. The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a
+    //function that adds the two numbers and returns the sum as a linked list.
+    public ListNode sumLists(ListNode l1, ListNode l2) {
+        ListNode curr = new ListNode();
+        ListNode ans = null;
+        int val1 = 0;
+        int val2 = 0;
+        int prev = 0;
+
+        while (l1 != null || l2 != null) {
+            if (l1 != null) {
+                val1 = l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                val2 = l2.val;
+                l2 = l2.next;
+            }
+            int newVal;
+            if (val1 + val2 + prev > 9) {
+                newVal = (val1 + val2 + prev) % 10;
+                prev = 1;
+            } else {
+                newVal = val1 + val2 + prev;
+                prev = 0;
+            }
+
+            curr.val = newVal;
+            if (ans == null) ans = curr;
+            curr.next = new ListNode();
+            curr = curr.next;
+            val1 = 0;
+            val2 = 0;
+        }
+        if (prev > 0) {
+            curr.val = prev;
+        }
+        return ans;
+    }
+
 }
