@@ -152,4 +152,30 @@ public class LinkedLists {
         return ans;
     }
 
+    //2.6 Palindrome: Implement a function to check if a linked list is a palindrome.
+    public boolean isPalindrome(ListNode node) {
+        ListNode reverse = reverseList(node);
+        while (node != null) {
+            if (node.val != reverse.val) {
+                return false;
+            }
+            reverse = reverse.next;
+            node = node.next;
+        }
+        return true;
+    }
+
+    public ListNode reverseList(ListNode node) {
+        // ref https://github.com/Ariel-Isaacm/LeetCodeProblems/blob/master/LinkedList/ReverseLinkedList206.java
+        ListNode head = null;
+        while (node != null) {
+            ListNode n = new ListNode(node.val);
+            n.next = head;
+            head = n;
+            node = node.next;
+        }
+        return head;
+
+    }
+
 }

@@ -53,6 +53,12 @@ class LinkedListsTest {
         assertEquals(9, listNode.next.next.val);
     }
 
+    @Test
+    void testIsPalindrome() {
+        assertFalse(solution.isPalindrome(createListNodes(0, 1, 2, 4, 0)));
+        assertTrue(solution.isPalindrome(createListNodes(0, 1, 2, 1, 0)));
+    }
+
     ListNode createListNodes(int... vals) {
         ListNode head = new ListNode(vals[0]);
         ListNode curr = head;
