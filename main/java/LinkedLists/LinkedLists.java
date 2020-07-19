@@ -178,4 +178,32 @@ public class LinkedLists {
 
     }
 
+    //2.7 Intersection: Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting node.
+    // Note that the intersection is defined based on reference, not value.
+    // That is, if the kth node of the first linked list is the exact same node (by reference) as the jth node of the second
+    //linked list, then they are intersecting.
+    public ListNode intersection(ListNode node1, ListNode node2) {
+        HashSet<ListNode> seen = new HashSet<ListNode>();
+        while (node1 != null || node2 != null) {
+            if (node1 != null) {
+                if (seen.contains(node1)){
+                    return node1;
+                } else {
+                    seen.add(node1);
+                }
+                node1 = node1.next;
+            }
+            if (node2 != null) {
+                if (seen.contains(node2)){
+                    return node2;
+                } else {
+                    seen.add(node2);
+                }
+                node2 = node2.next;
+            }
+        }
+
+        return null;
+    }
+
 }
