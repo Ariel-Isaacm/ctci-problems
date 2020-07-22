@@ -186,7 +186,7 @@ public class LinkedLists {
         HashSet<ListNode> seen = new HashSet<ListNode>();
         while (node1 != null || node2 != null) {
             if (node1 != null) {
-                if (seen.contains(node1)){
+                if (seen.contains(node1)) {
                     return node1;
                 } else {
                     seen.add(node1);
@@ -194,7 +194,7 @@ public class LinkedLists {
                 node1 = node1.next;
             }
             if (node2 != null) {
-                if (seen.contains(node2)){
+                if (seen.contains(node2)) {
                     return node2;
                 } else {
                     seen.add(node2);
@@ -205,5 +205,31 @@ public class LinkedLists {
 
         return null;
     }
+
+    //2.8 Loop Detection: Given a circular linked list, implement an algorithm that returns the node at the
+    //beginning of the loop.
+    //DEFINITION
+    //Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so
+    //as to make a loop in the linked list.
+    public ListNode loopDetection(ListNode node) {
+        // this solution is simpler but consumes more memory
+//        HashSet<ListNode> seen = new HashSet<ListNode>();
+//        while (node != null) {
+//            if (seen.contains(node)) return node;
+//            seen.add(node);
+//            node = node.next;
+//        }
+
+        ListNode slow = node;
+        ListNode fast = node.next;
+        while (fast != null && slow.next != null && fast.next != null) {
+            if (slow == fast) return slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return null;
+    }
+
 
 }

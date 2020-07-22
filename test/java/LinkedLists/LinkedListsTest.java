@@ -59,6 +59,23 @@ class LinkedListsTest {
         assertTrue(solution.isPalindrome(createListNodes(0, 1, 2, 1, 0)));
     }
 
+    @Test
+    void testLoopDetection() {
+        ListNode head = createListNodes('A', 'B', 'C', 'D', 'E');
+        ListNode corrupt = head.next.next;
+        ListNode tail = head;
+        while (true) {
+            tail = tail.next;
+            if (tail.next == null) {
+                tail.next = corrupt;
+                break;
+            }
+        }
+
+        assertEquals(corrupt, solution.loopDetection(head));
+
+    }
+
     ListNode createListNodes(int... vals) {
         ListNode head = new ListNode(vals[0]);
         ListNode curr = head;
