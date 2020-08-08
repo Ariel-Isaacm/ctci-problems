@@ -22,4 +22,8 @@ public class StacksAndQueues {
     //(that is, pop ( ) should return the same values as it would if there were just a single stack).
     // ans  in SetOfStacks.java
 
+    //3.4 Queue via Stacks: Implement a MyQueue class which implements a queue using two stacks.
+
+
+
 }
