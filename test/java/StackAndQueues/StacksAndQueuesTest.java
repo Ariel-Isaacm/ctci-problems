@@ -6,6 +6,8 @@ import StacksAndQueues.MyQueue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Stack;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StacksAndQueuesTest {
@@ -50,5 +52,24 @@ class StacksAndQueuesTest {
             assertEquals(i, myQueue.remove());
         }
         assertEquals(-1, myQueue.remove());
+    }
+
+    @Test
+    void testSort() {
+        Stack<Integer> input = new Stack<>();
+        input.add(34);
+        input.add(3);
+        input.add(31);
+        input.add(98);
+        input.add(92);
+        input.add(23);
+
+        Stack<Integer> ans = solution.sortStack(input);
+        assertEquals(3, ans.pop());
+        assertEquals(23, ans.pop());
+        assertEquals(31, ans.pop());
+        assertEquals(34, ans.pop());
+        assertEquals(92, ans.pop());
+        assertEquals(98, ans.pop());
     }
 }

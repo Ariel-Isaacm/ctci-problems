@@ -1,5 +1,7 @@
 package StacksAndQueues;
 
+import java.util.Stack;
+
 public class StacksAndQueues {
 
     //3.1 Three in One: Describe how you could use a single array to implement three stacks.
@@ -24,6 +26,22 @@ public class StacksAndQueues {
 
     //3.4 Queue via Stacks: Implement a MyQueue class which implements a queue using two stacks.
 
+
+
+    //3.5 Sort Stack: Write a program to sort a stack such that the smallest items are on the top. You can use
+    //an additional temporary stack, but you may not copy the elements into any other data structure
+    //(such as an array). The stack supports the following operations: push, pop, peek, and isEmpty.
+    public Stack<Integer> sortStack(Stack<Integer> input) {
+        Stack<Integer> aux = new Stack<>();
+        while (!input.isEmpty()) {
+            int tmp = input.pop();
+            while (!aux.isEmpty() && aux.peek() < tmp) {
+                input.push(aux.pop());
+            }
+            aux.push(tmp);
+        }
+        return aux;
+    }
 
 
 }
