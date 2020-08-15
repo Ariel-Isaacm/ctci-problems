@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StacksAndQueuesTest {
     // no need for a test for 3.1
-    static StacksAndQueues solution;
+    private static StacksAndQueues solution;
 
     @BeforeAll
     static void setUp() {
